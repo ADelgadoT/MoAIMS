@@ -16,7 +16,7 @@ install_github("rreybeyb/MoAIMS/codes")
 
 # Example
 
-- A simple run(test data provided in example/data)
+- A simple run(test data provided in [moaims_extdata](https://drive.google.com/drive/folders/1oS47qt2ikiMJN9AAqqUgXUIXbf7XW9YW?usp=sharing))
 
   - Required inputs
     - sample_info_file: A sample sheet of sample information. Please see the required format in example/sample_sheet_exampe.tsv
