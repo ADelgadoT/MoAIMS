@@ -2,7 +2,7 @@
 % Please edit documentation in R/readBinCount.r
 \name{readBinCount}
 \alias{readBinCount}
-\title{read bin count}
+\title{import object of class binCount.}
 \usage{
 readBinCount(in_fn = NULL)
 }
