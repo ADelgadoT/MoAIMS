@@ -1,0 +1,2 @@
+SampleID	BamIP	BamInput
+WT_rep2	/absolute/path/to/IP.dedup.bam	/absolute/path/to/input.dedup.bam

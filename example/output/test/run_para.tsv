@@ -1,0 +1,15 @@
+sample_info_file	/Users/kay/Desktop/sample_sheet_example.tsv
+gtf_file	/Users/kay/Documents/genome/mouse/gencode/M18/gencode.vM18.annotation.sorted.gtf
+strand_specific	1
+is_paired	FALSE
+proj_name	test
+bin_size	200
+expr_thred	0.5
+per_thred	0.6
+min_n_x	50
+trunc_val	0.999
+k_down	2
+k_up	6
+fdr	0.05
+output_intmd	TRUE
+sep_bin_info	TRUE
