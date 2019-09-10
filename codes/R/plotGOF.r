@@ -83,7 +83,7 @@ plotGOF <- function(fit_obj=NULL,
   
   	df_plot=rbind(df_Y,df_sim_1s,df_sim_2s)
   	
-  	png(paste("GOF_",sample_id,sep=""),width = 500, height = 300) 
+  	png(paste("GOF_",sample_id,".png",sep=""),width = 500, height = 300) 
   	fig=ggplot(df_plot,aes(x=val+1,y=freq,color=Type))+geom_line(alpha=0.8)+
   		scale_x_continuous(trans = 'log10')+
   		scale_y_continuous(trans = 'log10')+
