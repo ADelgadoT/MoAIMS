@@ -151,7 +151,8 @@ saveSigBin <- function(sig_region_obj=NULL,
 saveFit <- function(fit_obj_all=NULL,
 		  			optim_k_all=NULL,
 		  			optim_reg_all=NULL,
-		  			proj_name='NA'){
+		  			proj_name='NA',
+		  			sample_id_all=NULL){
 
   pi_s_all=NULL
   val_BIC_1s_all=NULL
@@ -164,7 +165,8 @@ saveFit <- function(fit_obj_all=NULL,
   
   }
     			
-  df_out=data.frame(pi_s=pi_s_all,
+  df_out=data.frame(sample_id=sample_id_all,
+  					pi_s=pi_s_all,
   					val_BIC_1S=val_BIC_1s_all,val_BIC_2S=val_BIC_2s_all,
   					optim_k=optim_k_all,
   					optim_reg=optim_reg_all)

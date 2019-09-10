@@ -238,7 +238,8 @@ moaims <- function(
   saveFit(fit_obj_all=fit_obj_all,
 		  optim_k_all=optim_k_all,
 		  optim_reg_all=optim_reg_all,
-		  proj_name=proj_name)
+		  proj_name=proj_name,
+		  sample_id_all=sample_id)
 
   cat("#Done.\n")	  
 
