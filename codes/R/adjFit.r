@@ -121,7 +121,8 @@ adjFit <- function(
   saveFit(fit_obj_all=fit_obj_all,
 		  optim_k_all=optim_k_all,
 		  optim_reg_all=optim_reg_all,
-		  proj_name=sample_id)
+		  proj_name=sample_id,
+		  sample_id_all=sample_id)
 
 }
 
