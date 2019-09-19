@@ -31,7 +31,19 @@ em1S <- function( MOSAiCS_Z0, Y, pNfit, k=3 , iter_stop=100)
     b_init <- (mu1_init - EN)^2 / (var1_init - varN - mu1_init + EN)
     c_init <- (mu1_init - EN) / (var1_init - varN - mu1_init + EN) 
     
-    pi0_init=0.98  
+    if ( sum(tab_Y[ as.numeric(names(tab_Y))<=2 ])/sum(tab_Y) > 0.5 ) { 
+    	pi0_init=0.98   
+    } else{
+        py0z0 <- dnbinom(0,a,b_est/(b_est+1)) 
+        py1z0 <- dnbinom(1,a,b_est/(b_est+1))
+        py2z0 <- dnbinom(2,a,b_est/(b_est+1)) 
+               
+        denom_pi0 <- sum(py0z0) + sum(py1z0) + sum(py2z0) 
+        num_pi0 <- sum( tab_Y[1:3] )
+        
+        pi0_init=min(num_pi0/denom_pi0,0.98)
+
+    }
 
 
     ##################################################################
