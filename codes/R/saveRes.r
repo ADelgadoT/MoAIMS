@@ -1,3 +1,4 @@
+
 saveRunPara <- function(run_para=NULL){
 
     out=do.call(rbind.data.frame, run_para)
@@ -10,6 +11,7 @@ saveRunPara <- function(run_para=NULL){
 saveBinInfo <- function(bin_info_obj=NULL,
                         proj_name='NA'){
   
+  options(scipen=999)
   feat_input=data.frame(GeneID=bin_info_obj@bin_id,
                         Chr=bin_info_obj@chrom,
                         Start=bin_info_obj@start,
@@ -26,6 +28,7 @@ saveBinInfo <- function(bin_info_obj=NULL,
 saveBinCount <- function(bin_count_obj=NULL,
                         sample_id=NULL){
   
+  options(scipen=999)
   df_bin_count=data.frame(bin_id=bin_count_obj@bin_id,
                         ip=bin_count_obj@ip,
                         input=bin_count_obj@input)
@@ -41,6 +44,7 @@ saveSigRegion <- function(sig_region_obj=NULL,
                      bin_info_obj=NULL,
                      sample_id=NULL){
   
+  options(scipen=999)
   sig_region_list=sig_region_obj@sig_region_list
   sig_region_list$bin_id=as.character(sig_region_list$bin_id)
   sig_region_list$gene_id=unlist(lapply(strsplit(sig_region_list$bin_id,"_"), function(x) x[1]))
@@ -103,6 +107,7 @@ saveSigBin <- function(sig_region_obj=NULL,
                        bin_info_obj=NULL,
                        sample_id=NULL){
   
+  options(scipen=999)
   bin_info=data.frame(bin_id=bin_info_obj@bin_id,
                       chrom=bin_info_obj@chrom,
                       start=bin_info_obj@start,
