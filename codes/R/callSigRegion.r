@@ -57,10 +57,11 @@ callSigRegion<- function(bin_count_obj=NULL,
     df_out=data.frame(bin_id=bin_count_obj@bin_id,
                       ip=bin_count_obj@ip,
                       input=bin_count_obj@input,
+                      mu=fit_obj@mu_b,
+                      fc=(bin_count_obj@ip+1)/(fit_obj@mu_b+1),
                       if_sig=res_fdr$if_sig,
                       pval=res_fdr$pval)
     
-    #df_out=df_out %>% mutate(fc=ip/ifelse((input==0), 1, input))
     
     sig_region_obj=new('sigRegion')
     sig_region_obj@sig_region_list=filter(df_out,if_sig==1)

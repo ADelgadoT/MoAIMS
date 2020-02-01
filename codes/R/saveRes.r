@@ -75,7 +75,9 @@ saveSigRegion <- function(sig_region_obj=NULL,
                                                        chromEnd=max(end),
                                                        blockSize=paste(c(end-start+1,''),collapse=','),
                                                        merged_size=sum(end-start+1),
-                                                       score=max(ip),
+                                                       score1=max(ip),
+                                                       score2=max(fc),
+                                                       score3=-log10(min(pval)),
                                                        blockStarts=ifelse(strand=="+",paste(start-start[1],collapse=','),paste(rev(start-start[n()]),collapse=',')),
                                                        blockCount=n()))
   
@@ -89,14 +91,15 @@ saveSigRegion <- function(sig_region_obj=NULL,
                     "chromStart",
                     "chromEnd",
                     "mbin_id",
-                    "score",
+                    "score1",
                     "strand",
                     "thickStart",
                     "thickEnd",
                     "itemRgb",
                     "blockCount",
                     "blockSize",
-                    "blockStarts")])
+                    "blockStarts",
+                    "score2","score3")])
     
   write.table(df_out,paste("sig_",sample_id,".bed",sep=""),sep="\t",row.names=F,col.names=F,quote=F)
   
