@@ -29,8 +29,16 @@ install_github("rreybeyb/MoAIMS/codes")
     strand_specific = 1, is_paired = F, proj_name='test')
   ```
   - Primary output(See example/output/test)
-    - Enriched regions in BED12 format(sig_*.bed)
+    - Enriched regions in [BED12](https://genome.ucsc.edu/FAQ/FAQformat.html#format1) format(sig_*.bed). Definition of some specific columns are:
+
+      1) 5th: the highest bin count of merged regions
+
+      2) 13th: the highest fold change of merged regions
+
+      3) 14th: the highest -log10(pvalue) of merged regions
+
     - Goodness of Fitting plot(GOF_*.png)
+
     - A summary table of models(fit_res_*.tsv)
 
 - Need to adjust the model
