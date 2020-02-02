@@ -5,4 +5,5 @@ export(moaims)
 export(readBinCount)
 export(readBinInfo)
 
+
 import(MASS,mgcv,ggplot2,GenomicRanges,GenomicAlignments,GenomicFeatures,rtracklayer,Rsubread,dplyr,mosaics,GenomeInfoDb,SummarizedExperiment)

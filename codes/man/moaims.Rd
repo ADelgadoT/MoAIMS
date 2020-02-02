@@ -8,8 +8,8 @@ moaims(sample_info_file = NULL, gtf_file = NULL,
   strand_specific = NULL, is_paired = NULL, work_dir = ".",
   proj_name = "NA", bin_size = 200, expr_thred = 0.5,
   per_thred = 0.6, min_n_x = 50, trunc_val = 0.999, k_down = 2,
-  k_up = 6, iter_stop = 100, fdr = 0.05, output_intmd = TRUE,
-  sep_bin_info = TRUE)
+  k_up = 6, mu_init = 0.1, var_init = 0.15, iter_stop = 100,
+  fdr = 0.05, output_intmd = TRUE, sep_bin_info = TRUE)
 }
 \arguments{
 \item{sample_info_file}{Required. Sample sheet.}
@@ -37,6 +37,10 @@ moaims(sample_info_file = NULL, gtf_file = NULL,
 \item{k_down}{Minimum k. Default is 2.}
 
 \item{k_up}{Maximum k. Default is 6.}
+
+\item{mu_init}{Initiation value of signal mean. Default is 0.1.}
+
+\item{var_init}{Initiation value of signal variance. Default is 0.15.}
 
 \item{iter_stop}{Iteration times. Default is 100.}
 

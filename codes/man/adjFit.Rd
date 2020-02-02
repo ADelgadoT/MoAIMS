@@ -6,8 +6,9 @@
 \usage{
 adjFit(bin_info_obj = NULL, bin_count_obj = NULL, sample_id = NULL,
   work_dir = ".", proj_name = "NA", min_n_x = 50,
-  trunc_val = 0.999, k_down = 2, k_up = 6, iter_stop = 100,
-  reg = "rlm", fdr = 0.05, output_intmd = TRUE)
+  trunc_val = 0.999, k_down = 2, k_up = 6, mu_init = 0.1,
+  var_init = 0.15, iter_stop = 100, reg = "rlm", fdr = 0.05,
+  output_intmd = TRUE)
 }
 \arguments{
 \item{bin_info_obj}{Required. Object of class binInfo, imported using method readBinInfo.}
@@ -27,6 +28,10 @@ adjFit(bin_info_obj = NULL, bin_count_obj = NULL, sample_id = NULL,
 \item{k_down}{Minimum k. Default is 2.}
 
 \item{k_up}{Maximum k. Default is 6.}
+
+\item{mu_init}{Initiation value of signal mean. Default is 0.1.}
+
+\item{var_init}{Initiation value of signal variance. Default is 0.15.}
 
 \item{iter_stop}{Iteration times. Default is 100.}
 
