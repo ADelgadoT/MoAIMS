@@ -5,6 +5,8 @@ fitEM <- function(bin_count_obj=NULL,
                   trunc_val=0.999,
                   k=3,
                   reg="gam",
+                  mu_init=0.1, 
+                  var_init=0.15,
                   iter_stop=100)
   {
       
@@ -152,7 +154,7 @@ fitEM <- function(bin_count_obj=NULL,
     
     #1S
 	fitZ1_1S <- em1S( fitZ0, Y=Y, 
-        			pNfit=pNfit, k=k, iter_stop=iter_stop )
+        			pNfit=pNfit, k=k, mu_init=mu_init, var_init=var_init, iter_stop=iter_stop )
     
     #2S
     fitZ0_update=list(pi0=fitZ1_1S$pi0,a = a_weight, muEst=mu_est,

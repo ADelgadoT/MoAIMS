@@ -3,7 +3,7 @@
 # Z1 with 1 signal component
 #########################################################
 
-em1S <- function( MOSAiCS_Z0, Y, pNfit, k=3 , iter_stop=100)
+em1S <- function( MOSAiCS_Z0, Y, pNfit, k=3 , mu_init=0.1, var_init=0.15, iter_stop=100)
 {
     ##################################################################
     ### initialization of the main EM
@@ -22,12 +22,13 @@ em1S <- function( MOSAiCS_Z0, Y, pNfit, k=3 , iter_stop=100)
     EN <- mean(mu_est)
     varN <- EN*( 1 + EN/a ) 
     
-    mu1_init=EN+0.1
-    var1_init=varN+0.15
+    #mu1_init=EN+0.1
+    #var1_init=varN+0.15
+    
+    mu1_init=EN+mu_init
+    var1_init=varN+var_init
     
 
-    
-    
     b_init <- (mu1_init - EN)^2 / (var1_init - varN - mu1_init + EN)
     c_init <- (mu1_init - EN) / (var1_init - varN - mu1_init + EN) 
     

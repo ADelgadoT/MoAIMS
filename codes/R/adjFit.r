@@ -10,6 +10,8 @@
 #' @param trunc_val Proportion of Input bins not taken as outliers. Default is 0.999.
 #' @param k_down Minimum k. Default is 2.
 #' @param k_up Maximum k. Default is 6.
+#' @param mu_init Initiation value of signal mean. Default is 0.1.
+#' @param var_init Initiation value of signal variance. Default is 0.15.
 #' @param iter_stop Iteration times. Default is 100.
 #' @param reg Regression method. Valid values are 'rlm' for RLM(robust fitting of linear models) and 'gam' for GAM(generalized additive models). 
 #' @param fdr False discovery rate. Default is 0.05.
@@ -34,6 +36,8 @@ adjFit <- function(
   trunc_val=0.999,
   k_down=2,
   k_up=6,
+  mu_init=0.1, 
+  var_init=0.15,
   iter_stop=100,
   reg="rlm",
   fdr=0.05,
@@ -73,6 +77,8 @@ adjFit <- function(
                   		  trunc_val=trunc_val,
                   		  k=k,
                   		  reg=reg,
+                  		  mu_init=mu_init, 
+                  		  var_init=var_init,
                   		  iter_stop=iter_stop)
         if (fit_obj_tmp@val_BIC_2s<min_BIC){
         	fit_obj=fit_obj_tmp
