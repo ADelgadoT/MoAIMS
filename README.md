@@ -4,7 +4,7 @@
 
 MoAIMS is an efficient software for detection of enriched regions of MeRIP-Seq. MoAIMS can also provide an intuitive indicator of treatment effect for the treatment MeRIP-Seq data.
 
-<img src="workflow.png"  style="width:100%">
+<img src="workflow.png"  style="width:60%">
 
 # Installation
 - Implemented language: R
