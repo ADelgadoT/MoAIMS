@@ -1,12 +1,10 @@
----
-typora-root-url: ./workflow.png
----
+
 
 # MoAIMS
 
 MoAIMS is an efficient software for detection of enriched regions of MeRIP-Seq. MoAIMS can also provide an intuitive indicator of treatment effect for the treatment MeRIP-Seq data.
 
-![workflow](/../workflow.png)
+<img src="workflow.png"  style="width:100%">
 
 # Installation
 - Implemented language: R
