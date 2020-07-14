@@ -83,17 +83,18 @@ plotGOF <- function(fit_obj=NULL,
   
   	df_plot=rbind(df_Y,df_sim_1s,df_sim_2s)
   	
-  	png(paste("GOF_",sample_id,".png",sep=""),width = 500, height = 300) 
+  	pdf(paste("GOF_",sample_id,".pdf",sep=""),width = 5, height = 3) 
+  	#png(paste("GOF_",sample_id,".png",sep=""),width = 500, height = 300) 
   	fig=ggplot(df_plot,aes(x=val+1,y=freq,color=Type))+geom_line(alpha=0.8)+
   		scale_x_continuous(trans = 'log10')+
   		scale_y_continuous(trans = 'log10')+
   		scale_color_manual(values=c("black", "orangered","royalblue"))+
   		xlab("IP bin count")+
   		ylab("Frequency")+
-  		theme(axis.text=element_text(size=12),
-        axis.title=element_text(size=14),
+  		theme(
+        axis.title=element_text(size=12),
         legend.title = element_blank(),
-        legend.text = element_text(size=12))
+        legend.text = element_text(size=10))
  		
  		
  	print(fig)

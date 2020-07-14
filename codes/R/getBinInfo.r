@@ -74,7 +74,15 @@ getBinInfo <- function(
   
   #get gene info. including chrom, gid, gene_type
   df_gtf=as.data.frame(gtf)
-  df_ginfo=filter(df_gtf,type=="gene")[,c("seqnames","gene_id","gene_type")]
+  
+  
+  if ('gene_biotype' %in% colnames(df_gtf)){   
+	df_ginfo=filter(df_gtf,type=="gene")[,c("seqnames","gene_id","gene_biotype")]   #apply to ENSEMBLE gtf
+
+  } else{
+	df_ginfo=filter(df_gtf,type=="gene")[,c("seqnames","gene_id","gene_type")]
+
+  }
 
   #expr_val, gene_id, gene_len, chromsome, gene_type
   df_expr=left_join(tpm,df_ginfo,by="gene_id")
