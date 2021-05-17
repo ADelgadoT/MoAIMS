@@ -73,7 +73,7 @@ saveSigRegion <- function(sig_region_obj=NULL,
   
   tmp_out=as.data.frame(sig_region_list_ext %>% group_by(mbin_id) %>% mutate(chromStart=min(start)-1,  #convert to 0-based
                                                        chromEnd=max(end),
-                                                       blockSize=paste(c(end-start+1,''),collapse=','),
+                                                       blockSize=ifelse(strand=="+",paste(c(end-start+1,''),collapse=','),paste(c(rev(end-start+1),''),collapse=',')),
                                                        merged_size=sum(end-start+1),
                                                        score1=max(ip),
                                                        score2=max(fc),
@@ -124,9 +124,9 @@ saveSigBin <- function(sig_region_obj=NULL,
   sig_region_list_ext=left_join(sig_region_list,bin_info,by="bin_id")
   
   
-  tmp_out=as.data.frame(sig_region_list_ext %>% group_by(bin_id) %>% mutate(chromStart=min(start),
+  tmp_out=as.data.frame(sig_region_list_ext %>% group_by(bin_id) %>% mutate(chromStart=min(start)-1,  #convert to 0-based
                                                        chromEnd=max(end),
-                                                       blockSize=paste(c(end-start+1,''),collapse=','),
+                                                       blockSize=ifelse(strand=="+",paste(c(end-start+1,''),collapse=','),paste(c(rev(end-start+1),''),collapse=',')),
                                                        score=ip,
                                                        blockStarts=ifelse(strand=="+",paste(start-start[1],collapse=','),paste(rev(start-start[n()]),collapse=',')),
                                                        blockCount=n()))
