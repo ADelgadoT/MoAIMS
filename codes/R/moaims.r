@@ -62,7 +62,7 @@ moaims <- function(
   } else{
     stop( "Stop! Working directory not found." ) 
   }
-  
+  cat('MoAIMS - fork by ADelgadoT.\n')
   #check required parameters
   if ( is.null(sample_info_file) ) { stop( "Stop! Sample sheet is required." ) }
   if ( is.null(gtf_file) ) { stop( "Stop! Annotation GTF is required." ) }

@@ -19,10 +19,10 @@ getBinInfo <- function(
   txdb <- makeTxDbFromGRanges(gtf)
   
   #keep standard chromosomes
-  txdb=keepStandardChromosomes(txdb)
+  #txdb=keepStandardChromosomes(txdb)
   
   #filter out chrM
-  seqlevels(txdb) <- seqlevels(txdb)[!grepl("M",seqlevels(txdb))]
+  #seqlevels(txdb) <- seqlevels(txdb)[!grepl("M",seqlevels(txdb))]
   
   #return all chromosomes
   #seqlevels(txdb) <- seqlevels0(txdb)
@@ -32,8 +32,7 @@ getBinInfo <- function(
   exon_bygene <-  exonsBy(x=txdb,by='gene') 
   merged_gene <- reduce(exon_bygene) 
   gene_len=sum(width(merged_gene))
-
-
+  
   #filter genes not expressed  
   if (strand_specific==0){
   
@@ -64,7 +63,6 @@ getBinInfo <- function(
   
   raw_count <- as.data.frame(assays(gene_count)$counts)
 
-
   #get TPM
   tpmx=raw_count / gene_len
   tpm <- as.data.frame(t( t(tpmx) * 1e6 / colSums(tpmx) ))
@@ -75,18 +73,17 @@ getBinInfo <- function(
   #get gene info. including chrom, gid, gene_type
   df_gtf=as.data.frame(gtf)
   
-  
   if ('gene_biotype' %in% colnames(df_gtf)){   
 	df_ginfo=filter(df_gtf,type=="gene")[,c("seqnames","gene_id","gene_biotype")]   #apply to ENSEMBLE gtf
 
   } else{
-	df_ginfo=filter(df_gtf,type=="gene")[,c("seqnames","gene_id","gene_type")]
+	df_ginfo=subset(df_gtf,type=="gene")[,c("seqnames","gene_id","gene_type")]
 
   }
 
+  
   #expr_val, gene_id, gene_len, chromsome, gene_type
   df_expr=left_join(tpm,df_ginfo,by="gene_id")
-  
   
   bin_info_obj_all=NULL
   
@@ -131,19 +128,27 @@ getBinInfo <- function(
   bin_info_all <- data.frame(matrix(ncol = 5, nrow = 0))
   colnames(bin_info_all)=c("GeneID","Chr","Start","End","Strand")
   
+  #Protection: if there are less than 1k genes, reduce batch size to avoid errors:
+  if (batch_size>length(gnames)){
+    print('Changing batch size')
+    batch_size <- length(gnames)
+  }
+  
   batches=floor(length(gnames)/batch_size)    
-  
+
   #start_time <- Sys.time()
-  
+  print('Start batches')
   for (i in 1:batches){
-    #print(i)
     tmpres=lapply(gnames[((i-1)*batch_size+1):(i*batch_size)],function(x) .binByGene(x,merged_gene,bin_size))
     bin_info_all=rbind(bin_info_all,bind_rows(tmpres))
   }
   
-  #rest
-  tmpres=lapply(gnames[(batches*batch_size+1):length(gnames)],function(x) .binByGene(x,merged_gene,bin_size))
-  bin_info_all=rbind(bin_info_all,bind_rows(tmpres))
+  if ((batches*batch_size+1)<length(gnames)){
+    #rest
+    print('Last batch')
+    tmpres=lapply(gnames[(batches*batch_size+1):length(gnames)],function(x) .binByGene(x,merged_gene,bin_size))
+    bin_info_all=rbind(bin_info_all,bind_rows(tmpres))
+  }
   
   #end_time <- Sys.time()
   #print(end_time - start_time)
@@ -172,7 +177,7 @@ getBinInfo <- function(
   strand=as.character(ndf$strand[1])
   chrname=as.character(ndf$seqnames[1])
   exonic_num=nrow(ndf)
-  
+
   #rna coordinate
   rna_coord=c()
   mark_pos=1
